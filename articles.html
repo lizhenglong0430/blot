@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./image/iconfont/iconfont.css">
+<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/articles.css">
+<body>
+    <div class="blot">
+        <div class="blot_header">
+            <div class="blot_top">
+                <div class="blot_left">
+                    <div class="logo">
+                        <img src="./image/h.gif" alt="">
+                    </div>
+                    <div class="web-xiaoxi">
+                        <i class="iconfont icon-sound-max-full"></i>
+                        <ul class="multiline">
+                            <li>喜欢的话可以再GitHub上点个关注哦</li>
+                            <li>政函数 - 博客</li>
+                            <li>现在已经开放源码</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mynav">
+                    <ul>
+                        <li><a href="./index.html">首页</a></li>
+                        <li><a href="./list.html">博客</a></li>
+                        <li class="drop_nav_father">分类 
+                            <i class="iconfont icon-xiangxia"></i>
+                            <div class="drop_nav" >
+                                <ul>
+                                    <li>
+                                        <a href="./bigdata.html">大数据</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="./guidang.html">归档</a></li>
+                        <li><a href="./message.html">留言</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="mysection">
+                <article>
+                    <h3 class="arc-title index_title">Flume HDFS Sink写数据到S3</h3>
+                    <div class="post-line bg-color">
+                        <ul>
+                            <li>
+                                <a href="" title="lizhenglong发表于2021年11月28日">
+                                    <i class="iconfont icon-shizhong"></i>2021年11月28日
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="">
+                                    <i class="iconfont icon-gerenxinxi"></i>lizhenglong
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="转到评论">
+                                    <i class="iconfont icon-xinxi1"></i>0条
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="已有 8 次浏览">
+                                    <i class="iconfont icon-liulan"></i>8条
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--文章正文-->
+                    <div class="article-content bg-color markdown-body">
+                        <div class="post-content" style="padding: 10px 20px 20px 10px">
+                            <div class="BlogAnchor" style="text-indent: 20px; font-size: 14px; margin-bottom: 30px">
+                                <p>
+                                    <b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录[-]</b>
+                                </p>
+                                <div class="AnchorContent" id="AnchorContent"></div>
+                            </div>
+                            <p>Flume目前为止没有提供官方的S3 Sink。但是有一个可行的选项<code>HDFS Sink</code>。HDFS Sink 可以使用<code>hadoop-aws.jar</code>来完成S3的写入工作。</p>
+                            <p>首先下载hadoop的包，需要注意的是hadoop-aws、Flume、S3三者之间有很大的版本依存关系，我自己尝试了好几个hadoop版本才成功写入S3。成功的版本是hadoop2.7。flume1.8和flume1.9都是可以的。</p>
+                            <p>hadoop所有发行版本可以在这里下载到<a href="https://archive.apache.org/dist/hadoop/common/">https://archive.apache.org/dist/hadoop/common/</a> 。下载tar包解压，将其jar包路径配置到 <code>FLUME_CLASSPATH</code> 。FLUME_CLASSPATH在Flume的conf路径下的<code>flume-env.sh</code>中:</p>
+                            <pre class="language-python code-toolbar">
+                                <code class="language-bash">
+                                    mv flume-env.sh.template flume-env.sh
+                                </code>
+                            </pre>
+                            <p>向flume-env.sh中添加:</p>
+                            <pre class="language-python code-toolbar"><code>FLUME_CLASSPATH=&quot;/opt/hadoop-2.7.7/share/hadoop/common/lib/*:/opt/hadoop-2.7.7/share/hadoop/tools/lib/*:/opt/hadoop-2.7.7/share/hadoop/common/hadoop-common-2.7.7.jar&quot;
+                            </code></pre>
+                            <p>然后在flume的<code>conf/</code>路径下创建连接s3配置文件<code>core-site.xml</code>:</p>
+                            <pre class="language-python code-toolbar"><code class="language-xml">&lt;configuration&gt;
+                                &lt;property&gt;
+                                    &lt;name&gt;fs.s3a.impl&lt;/name&gt;
+                                    &lt;value&gt;org.apache.hadoop.fs.s3a.S3AFileSystem&lt;/value&gt;
+                                &lt;/property&gt;
+                                &lt;property&gt;
+                                    &lt;name&gt;fs.s3a.access.key&lt;/name&gt;
+                                    &lt;value&gt;your_s3_access_key&lt;/value&gt;
+                                &lt;/property&gt;
+                                &lt;property&gt;
+                                    &lt;name&gt;fs.s3a.secret.key&lt;/name&gt;
+                                    &lt;value&gt;your_s3_secret_key=&lt;/value&gt;
+                                &lt;/property&gt;
+                                &lt;property&gt;
+                                    &lt;name&gt;fs.s3a.connection.ssl.enabled&lt;/name&gt;
+                                    &lt;value&gt;true&lt;/value&gt;
+                                &lt;/property&gt;
+                                &lt;property&gt;
+                                    &lt;name&gt;fs.s3a.endpoint&lt;/name&gt;
+                                    &lt;value&gt;s3.ap-south-1.amazonaws.com(change it to you aws region)&lt;/value&gt;
+                                &lt;/property&gt;
+                            &lt;/configuration&gt;
+                            </code></pre>
+                            <p>最后配置Sink：</p>
+                            <pre class="language-python code-toolbar"><code>a1.sinks.k1.type = hdfs
+                            a1.sinks.k1.hdfs.path = s3a://&lt;bucket.name&gt;/&lt;path&gt;/%Y%m%d   # 路径换成你自己的
+                            a1.sinks.k1.hdfs.writeFormat = Text
+                            a1.sinks.k1.hdfs.rollSize = 1048576
+                            a1.sinks.k1.hdfs.rollCount = 5000
+                            a1.sinks.k1.hdfs.rollInterval = 28800
+                            a1.sinks.k1.hdfs.fileType = DataStream
+                            </code></pre>
+                            <p>然后正常启动flume即可,如果出现AWS相关报错，可以尝试切换hadoop的大版本，需要注意的是hadoop2.7及以上的版本才开始支持S3A。</p>
+                            <p>参考:
+                            https://medium.com/inspiredbrilliance/upload-files-to-aws-s3-using-apache-flume-c3464f6a2092
+                            https://stackoverflow.com/questions/26028096/use-flume-to-stream-data-to-s3
+                            https://blog.csdn.net/fct2001140269/article/details/93339222</p>
+                        </div>
+                    </div>
+                    <!--分享-->
+                    <div class="article-fx"><a class="fx-btn img-circle" href="javascript:;">分享</a>
+                        <!-- <div class="bd-fx arc-bdfx">
+                            <i class="el-remove fx-close"></i>
+                            <ul class="bdsharebuttonbox">
+                                <li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
+                                <li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+                                <li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
+                                <li><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                    <!--END 分享-->
+                    <div class="cyReward " style="text-align: center">
+                        <div id="cyReward" role="cylabs" data-use="reward" sid="51">打赏</div>
+                    </div>
+                    <hr>
+                    <!--标签-->
+                    <div class="article_tag">
+                        <ul>
+                            <li><a href=""
+                                title="标签：vue ">大数据</a>&nbsp;
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cyEmoji" style="text-align: center">
+                        <div id="cyEmoji" role="cylabs" data-use="emoji" sid="1">
+                            <div class="cy-wrapper">
+                                <div class="emoji-tip"></div>
+                                <ul class="emoji-list">
+                                    <li class="emoji-item" data-eid="30" data-ubb="[鼓掌]" data-desc="鼓掌！撒花！啪啪啪~啪啪啪~" data-num="145" style="width: 168px; height: 121px;">
+                                        <div><img src="https://pic.kuaizhan.com/face2013/1.gif" title="鼓掌"></div>
+                                        <p class="emoji-name">鼓掌</p>
+                                        <p class="emoji-num">145人</p>
+                                    </li>
+                                    <li class="emoji-item" data-eid="39" data-ubb="[草泥马]" data-desc="我心中有一万匹草泥马呼啸而过！" data-num="123" style="width: 168px; height: 121px;">
+                                        <div><img src="https://pic.kuaizhan.com/face2013/8.gif" title="草泥马"></div>
+                                        <p class="emoji-name">草泥马</p>
+                                        <p class="emoji-num">123人</p>
+                                    </li>
+                                    <li class="emoji-item" data-eid="42" data-ubb="[赞]" data-desc="赞一个！" data-num="152" style="width: 168px; height: 121px;">
+                                        <div><img src="https://pic.kuaizhan.com/face2013/13.gif" title="赞"></div>
+                                        <p class="emoji-name">赞</p>
+                                        <p class="emoji-num">153人</p>
+                                    </li>
+                                    <li class="emoji-item" data-eid="43" data-ubb="[鄙视]" data-desc="战斗力只有5的渣渣！" data-num="100" style="width: 168px; height: 121px;">
+                                        <div><img src="https://pic.kuaizhan.com/face2013/9.gif" title="鄙视"></div>
+                                        <p class="emoji-name">鄙视</p>
+                                        <p class="emoji-num">101人</p>
+                                    </li>
+                                    <li class="emoji-item" data-eid="29" data-ubb="[打酱油]" data-desc="打酱油，路过……" data-num="78" style="width: 168px; height: 121px;">
+                                        <div><img src="https://pic.kuaizhan.com/face2013/11.gif" title="打酱油"></div>
+                                        <p class="emoji-name">打酱油</p>
+                                        <p class="emoji-num">79人</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!--评论表单-->
+                <h3 class="form-btn blue-text">
+                    <a href="javascript:;">
+                        <i class="iconfont icon-liuyan"></i>我要留言 / 展开表单
+                    </a>
+                </h3>
+            </div>   
+            <div class="myaside">
+                <!-- 关注我 -->
+                <div class="focus-me bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1s;">
+                    <h4 class="index_title"><i class="iconfont icon-xiai"></i>关注我
+                        <small>Follow</small>
+                    </h4>
+                    <div class="xiangguan">
+                        <div><a class="github" href="" target="_blank">
+                            <i class="iconfont icon-github"></i></a><span>Github</span></div>
+                        <div><a class="benbo" href="" target="_blank">
+                            <i class="iconfont icon-xiazai"></i></a><span>博客源码</span></div>
+                        <div><a class="side-fx"><i class="iconfont icon-fenxiang"></i></a><span>分享本博</span></div>
+                        <div><a class="mail-btn" href=""><i class="iconfont icon-xinxi"></i></a><span>订阅我</span></div>
+                    </div>
+                </div>
+                 <!--最新咨询-->
+                <div class="clos-new bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.14286s;">
+                    <h4 class="index_title"><i class="iconfont icon-dengpao"></i>最新资讯
+                        <small>News</small>
+                    </h4>
+                    <ul>
+                        <li><i class="iconfont icon-tianqi"></i>
+                            <iframe id="tianqi" scrolling="no" frameborder="0" allowtransparency="true"
+                                    src="https://i.tianqi.com/?c=code&a=getcode&id=34&h=25&w=280"></iframe>
+                        </li>
+
+                        <li><i class="iconfont icon-rili"></i>历史今天：
+                            <iframe src="http://code.lssdjt.com/6.html?w=400&h=20&bky=dotted&bks=0&fs=14&fc=#565656&hg=20&ie=0&xhx=none&sd=1000&px=3&len=0&sk=1&n=0"
+                                    width="300" height="16" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                        </li>
+                    </ul>
+                </div>
+                <!--搜索-->
+                <div class="search animation-div" style="animation-name: fuxiasuo; animation-duration: 1.28571s;">
+                    <form action="" method="get">
+                        <div class="search-index">
+                            <input name="key" type="text" placeholder="请输入关键字" onfocus="this.placeholder=''"
+                                onblur=""/>
+                            <i class="iconfont icon-sousuo"><input value=" " type="submit"/></i>
+                        </div>
+                    </form>
+                </div>
+                <!--文章排行tab-->
+                <div class="mytab bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.42857s;">
+                    <div class="tab-btn">
+                        <a class="hd-btn" href="javascript:;"><i class="iconfont icon-pinglun"></i>最新评论</a>
+                        <a class="ph-btn tab-active" href="javascript:;"><i class="iconfont icon-paihangbang"></i>文章排行</a>
+                    </div>
+                    <ul class="hudong-ul">
+                    </ul>
+                    <!--文章排行-->
+                    <ul class="paihang-ul">
+                        <li>
+                            <span></span>
+                            <a href="/blog/detail/1/" title="Flume HDFS Sink写数据到S3">Flume HDFS Sink写数据到S3
+                                <b><i class="iconfont icon-liulan"></i>(5)</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--标签-->
+                <div class="cloud bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.57143s;">
+                    <h4 class="index_title"><i class="iconfont icon-bianqian"></i>标签
+                        <small>Tags</small>
+                    </h4>
+                    <ul id="3dcloud">
+                        
+                            <li><a href=""
+                                title="标签：vue ">vue</a></li>
+                        
+                    </ul>
+                </div>
+                 <!--友情链接-->
+                <div class="side-link animation-div" style="animation-name: fuxiasuo; animation-duration: 1.71429s;">
+                    <h4 class="index_title"><i class="iconfont icon-lianjie"></i>友情链接
+                        <small>Links</small>
+                        <a href="mailto:j_hao104@163.com?subject=博客友链互换&body=博客名称:<br> 博客描述:<br>博客地址:">
+                            <i class="iconfont icon-jia"></i>
+                            申请
+                        </a>
+                    </h4>
+                    <ul>
+                        <li><a href="https://www.zaoshu.io/" target="_blank" title="智能云爬虫">造数</a></li>
+                        <li><a href="http://brucedone.com/" target="_blank" title="大鱼的鱼塘 - 一个总会有收获的地方">大鱼的鱼塘</a></li>
+                        <li><a href="http://www.songluyi.com/" target="_blank" title="灯塔水母">灯塔水母</a></li>
+                        <li><a href="http://blog.topspeedsnail.com/" target="_blank" title="本博客专注于技术，Linux，编程，Python，C，Ubuntu、开源软件、Github等">斗大的熊猫</a></li>
+                        <li><a href="https://www.urlteam.org/" target="_blank" title="URL-team">URL-team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <div class="foot-nav">
+        <div class="copy-right"><span>CopyRight © 2001-2021 lizhenglong's博客 &nbsp;&nbsp;&nbsp;     Design by lizhenglong</span></div>
+        <div class="license bottom-nav">
+            <a href="http://www.miitbeian.gov.cn">@2020 spiderpy.cn 	江苏备17012574号-1</a>
+        </div>
+    </div>
+</footer>
+<script src="./js/index.js"></script>
+</html>
