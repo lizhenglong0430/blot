@@ -122,7 +122,7 @@
                     <!--标签-->
                     <div class="article_tag">
                         <ul>
-                            <li><a href=""
+                            <li><a href="./bigdata.html"
                                 title="标签：vue ">大数据</a>&nbsp;
                             </li>
                         </ul>
@@ -131,7 +131,9 @@
                         <div id="cyEmoji" role="cylabs" data-use="emoji" sid="1">
                             <div class="cy-wrapper">
                                 <div class="emoji-tip"></div>
+                                <div class="jiayi">+1</div>
                                 <ul class="emoji-list">
+                                    
                                     <li class="emoji-item" data-eid="30" data-ubb="[鼓掌]" data-desc="鼓掌！撒花！啪啪啪~啪啪啪~" data-num="145" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/1.gif" title="鼓掌"></div>
                                         <p class="emoji-name">鼓掌</p>
@@ -173,17 +175,48 @@
             </div>
         </div>
     </div>
+    <div id="share_weixin" style="display: none; left: 200px; top: 1700.2px; width: 240px; height: 325px;">
+        <div class="weixin_head">
+            <span>分享到微信盆友圈</span>
+            <a href="#" class="weixin_close">×</a>
+        </div>
+        <div class="weixin_main">
+            <img src="./image/icon/qrcode.png" alt="">
+        </div>
+        <div class="weixin_foot">
+            打开微信，点击底部的“发现”，
+            <br>
+            使用“扫一扫”即可将网页分享至朋友圈。
+        </div>
+    </div>
 </body>
+<style>
+    .jiayi{
+        font-size: 20px;
+        position: relative;
+        color: red;
+        text-align: center;
+    }
+</style>
 <footer></footer>
 <script src="./js/tianchong.js"></script>
 <script src="./js/index.js"></script>
 <script src="./js/mobile.js"></script>
+
 <script>
     let emoji_item = document.querySelectorAll(".emoji-item")
     for(let i = 0;i < emoji_item.length;i++){
         emoji_item[i].addEventListener("click",(e)=>{
             console.log(e.target);
+            console.log(e.target.clientWidth);
         })
     }
+
+    document.querySelector(".article-fx").addEventListener("click",()=>{
+        document.querySelector("#share_weixin").style.display = "block"
+    })
+    document.querySelector(".weixin_close").addEventListener("click",()=>{
+        document.querySelector("#share_weixin").style.display = "none"
+    })
 </script>
 </html>

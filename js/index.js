@@ -25,7 +25,7 @@ class BoltHeader{
     oneday(){
         setInterval(()=>{
             this.date2 = new Date();
-            this.date3 = new Date(2021,11,20,0,0,0)
+            this.date3 = new Date(2021,11,19,10,10,10)
             this.day2 = this.date2.getDate();
             this.month2 = this.date2.getMonth(); //getMonth()是从0开始
             this.year2 = this.date2.getFullYear();

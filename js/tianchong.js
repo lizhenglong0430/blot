@@ -67,9 +67,9 @@ document.querySelector(".myaside").innerHTML = `
             <small>Follow</small>
         </h4>
         <div class="xiangguan">
-            <div><a class="github" href="https://github.com/lizhenglong0430/taobao.git" target="_blank">
+            <div><a class="github" href="https://github.com/lizhenglong0430/blot.git" target="_blank">
                 <i class="iconfont icon-github"></i></a><span>Github</span></div>
-            <div><a class="benbo" href="https://github.com/lizhenglong0430/taobao.git" target="_blank">
+            <div><a class="benbo" href="https://github.com/lizhenglong0430/blot.git" target="_blank">
                 <i class="iconfont icon-xiazai"></i></a><span>博客源码</span></div>
             <div><a class="side-fx"><i class="iconfont icon-fenxiang"></i></a><span>分享本博</span></div>
             <div><a class="mail-btn" href=""><i class="iconfont icon-xinxi"></i></a><span>订阅我</span></div>
@@ -140,7 +140,7 @@ document.querySelector(".myaside").innerHTML = `
         </h4>
         <ul id="3dcloud">
             
-                <li><a href=""
+                <li><a href="./bigdata.html"
                     title="标签：vue ">大数据</a></li>
             
         </ul>
