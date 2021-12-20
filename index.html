@@ -8,42 +8,14 @@
 </head>
 <link rel="stylesheet" href="./image/iconfont/iconfont.css">
 <link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/screen.css">
+<style>
+    
+    
+</style>
 <body>
     <div class="blot">
         <div class="blot_header">
-            <div class="blot_top">
-                <div class="blot_left">
-                    <div class="logo">
-                        <img src="./image/h.gif" alt="">
-                    </div>
-                    <div class="web-xiaoxi">
-                        <i class="iconfont icon-sound-max-full"></i>
-                        <ul class="multiline">
-                            <li>喜欢的话可以再GitHub上点个关注哦</li>
-                            <li>政函数 - 博客</li>
-                            <li>现在已经开放源码</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mynav">
-                    <ul>
-                        <li><a href="./index.html">首页</a></li>
-                        <li><a href="./list.html">博客</a></li>
-                        <li class="drop_nav_father">分类 
-                            <i class="iconfont icon-xiangxia"></i>
-                            <div class="drop_nav" >
-                                <ul>
-                                    <li>
-                                        <a href="./bigdata.html">大数据</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a href="./guidang.html">归档</a></li>
-                        <li><a href="./message.html">留言</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="container">
             <div class="mysection">
@@ -211,13 +183,26 @@
                 <!--文章排行tab-->
                 <div class="mytab bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.42857s;">
                     <div class="tab-btn">
-                        <a class="hd-btn" href="javascript:;"><i class="iconfont icon-pinglun"></i>最新评论</a>
-                        <a class="ph-btn tab-active" href="javascript:;"><i class="iconfont icon-paihangbang"></i>文章排行</a>
+                        <a class="hd-btn tab-active" href="javascript:;"><i class="iconfont icon-pinglun"></i>最新评论</a>
+                        <a class="ph-btn" href="javascript:;"><i class="iconfont icon-paihangbang"></i>文章排行</a>
                     </div>
                     <ul class="hudong-ul">
+                        <li>
+                            <div class="sd-name">
+                                <span>
+                                    <i class="iconfont icon-bookmark"></i>
+                                    留言板 - 政函数
+                                </span>
+                                <a href="" class="blue-text" title="好滴">好滴</a>
+                                <span style="text-align: right;">
+                                    - &nbsp;
+                                    <i class="iconfont icon-gerenxinxi"></i>
+                                </span>
+                            </div>
+                        </li>
                     </ul>
                     <!--文章排行-->
-                    <ul class="paihang-ul">
+                    <ul class="paihang-ul" style="display: none;">
                         <li>
                             <span></span>
                             <a href="./articles.html" title="Flume HDFS Sink写数据到S3">Flume HDFS Sink写数据到S3
@@ -259,124 +244,10 @@
         </div>
     </div>
 </body>
-<footer>
-    <div class="foot-nav">
-        <div class="copy-right"><span>CopyRight © 2001-2021 lizhenglong's博客 &nbsp;&nbsp;&nbsp;     Design by lizhenglong</span></div>
-        <div class="license bottom-nav">
-            <a href="http://www.miitbeian.gov.cn">@2020 spiderpy.cn 	江苏备17012574号-1</a>
-        </div>
-    </div>
-</footer>
+<footer></footer>
+<script src="./js/tianchong.js"></script>
 <script src="./utils.js"></script>
 <script src="./js/index.js"></script>
-    
-<script>
-    class Banner{
-    constructor(){
-        this.imgBox = document.querySelector('.banner > ul')
-        this.pointBox = document.querySelector('.banner > ol')
-        this.banner = document.querySelector('.banner')
-        this.mysection = document.querySelector('.mysection')
-        this.banner_li = document.getElementsByClassName('banner_li')
-        this.banner_width = this.banner.clientWidth
-        this.index = 1
-        this.timer = 0
-        this.flag = true
-        this.init()
-    }
-    init(){
-        this.copyEle()
-        // this.autoPlay()
-        this.overOut()
-        this.bindEvent()
-        this.changeTab()
-        this.addStyle()
-    }
-    addStyle(){
-        for(let i = 0;i < this.banner_li.length;i++){
-            this.banner_li[i].style.width = this.mysection.clientWidth + "px"
-        }
-    }
-    copyEle(){
-        let first  = this.imgBox.firstElementChild.cloneNode(true)
-        let last = this.imgBox.lastElementChild.cloneNode(true)
-
-        this.imgBox.appendChild(first)
-        this.imgBox.insertBefore(last , this.imgBox.firstChild)
-        this.imgBox.style.width = this.imgBox.children.length * 100 + '%'
-        this.imgBox.style.left = -this.banner_width + 'px'
-    }
-    autoPlay(){
-        this.timer = setInterval(()=>{
-            this.index++
-            this.move(this.imgBox,{left:-this.index*this.banner_width},this.moveEnd())
-        },3000)
-    }
-    move(ele,target,fn=()=>{}){
-        let timer_count = setInterval(()=>{
-            let count = 0
-            for(let key in target){
-                count ++
-                if (key === 'opacity') target[key] * 100
-                let current = key === 'opacity' ? getStyle(ele,'opacity') * 100 : parseInt(getStyle(ele,key))
-                let distance = (target[key] - current) /10
-                distance = distance > 0 ? Math.ceil(distance) : Math.floor(distance)
-                if(current === target[key]){
-                    count --
-                    if(!count){
-                        fn()
-                    }
-                    clearInterval(timer_count)
-                }else{
-                    ele.style[key] = key === 'opacity' ? (current+distance) / 100 : current + distance + 'px'
-                }
-            }
-        },10) 
-    }
-    moveEnd(){
-        if(this.index === this.imgBox.children.length - 1){
-            this.index = 1
-            this.imgBox.style.left = -this.index*this.banner_width + 'px'
-        }
-        if(this.index === 0){
-            this.index = this.imgBox.children.length - 2
-            this.imgBox.style.left = -this.index*this.banner_width + 'px'
-        }
-        this.flag = true
-    }
-    
-    overOut(){
-        this.banner.addEventListener('mouseover', ()=>clearInterval(this.timer))
-        this.banner.addEventListener('mouseout',()=>this.autoPlay())
-    }
-    bindEvent(){
-        this.banner.addEventListener('click',e => {
-            e = e || window.event
-            const target = e.target || e.srcElement
-            if(target.className === 'right'){
-                if(!this.flag) return
-                this.flag = false
-                this.index ++
-                this.move(this.imgBox,{left:-this.index*this.banner_width},this.moveEnd())
-            }
-            if(target.className === 'left'){
-                if(!this.flag) return
-                this.flag = false
-                this.index --
-                this.move(this.imgBox,{left:-this.index*this.banner_width},this.moveEnd())
-            }
-        }) 
-    }
-    changeTab(){
-        document.addEventListener('visibilitychange',()=>{
-            if(document.visibilityState === 'hidden'){
-                clearInterval(this.timer)
-            }else if(document.visibilityState === 'visible'){
-                this.autoPlay()
-            }
-        })
-    }
-}
-new Banner()
-</script>
+<script src="./js/mobile.js"></script>
+<script src="./js/ppt.js"></script>
 </html>

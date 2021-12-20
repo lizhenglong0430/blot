@@ -1,0 +1,66 @@
+@media screen and (min-width: 320px) and (max-width: 1023px){
+    .blot_header{
+        height: 3.3em !important;
+    }
+    .blot_left{
+        width: 100%;
+    }
+    .blot_left .logo{
+        max-width: 125px;
+        margin-left: 5px;
+    }
+    .web-xiaoxi{
+        max-width: 55% !important;
+        margin-top: 16px;
+    }
+    .mysection,.section,.myaside{
+        width: 95%;
+        margin: auto;
+        float: none;
+    }
+    .banner > ul >li{
+        width: 100%;
+    }
+    .container{
+        padding-top: 4.5em;
+    }
+    #tuijian,#Hot,#New{
+        background-position: -100%,-100%;
+    }
+    .arcimg{
+        width: 30%;
+        height: 78px;
+    }
+    .arc_right{
+        width: 66%;
+    }
+    .arc_right h4{
+        font-size: 14px;
+        line-height: 16px;
+        padding-bottom: 5px;
+    }
+    .arc_right p {
+        font-size: 12px;
+        height: 40px;
+        line-height: 20px;
+    }
+    .arc_right ul li{
+        padding: 0;
+        padding-right: 10px;
+    }
+    .arc_right ul li:nth-of-type(2), .arc_right ul li:nth-of-type(5),.arc_right ul li:last-child{
+        display: none;
+    }
+    .mynav{
+        display: none;
+    }
+    .mobile-nav{
+        display: block;
+    }
+    #toTop {
+        width: 30px;
+        height: 30px;
+        background-size: 100%;
+        right: 10px;
+    }
+}
