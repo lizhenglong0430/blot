@@ -27,11 +27,14 @@ document.querySelector(".blot_header").innerHTML = `
                                     <li>
                                         <a href="./bigdata.html">大数据</a>
                                     </li>
+                                    <li>
+                                        <a href="./message.html">留言</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
                         <li><a href="./guidang.html">归档</a></li>
-                        <li><a href="./message.html">留言</a></li>
+                        <li><a href="./music.html">音乐</a></li>
                     </ul>
                 </div>
                 <div class="mob-menu">
@@ -62,6 +65,20 @@ document.querySelector(".blot_header").innerHTML = `
     `
 document.querySelector(".myaside").innerHTML = `
     <!-- 关注我 -->
+    <div id="share_weixin" style="display: none;">
+        <div class="weixin_head">
+            <span>分享到微信盆友圈</span>
+            <a href="#" class="weixin_close">×</a>
+        </div>
+        <div class="weixin_main">
+            <img src="./image/icon/qrcode.png" alt="">
+        </div>
+        <div class="weixin_foot">
+            打开微信，点击底部的“发现”，
+            <br>
+            使用“扫一扫”即可将网页分享至朋友圈。
+        </div>
+    </div>
     <div class="focus-me bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1s;">
         <h4 class="index_title"><i class="iconfont icon-xiai"></i>关注我
             <small>Follow</small>
