@@ -131,35 +131,31 @@
                         <div id="cyEmoji" role="cylabs" data-use="emoji" sid="1">
                             <div class="cy-wrapper">
                                 <div class="emoji-tip"></div>
-<<<<<<< Updated upstream
-=======
-                                <!-- <div class="jiayi">+1</div> -->
->>>>>>> Stashed changes
                                 <ul class="emoji-list">
                                     <li class="emoji-item" data-eid="30" data-ubb="[鼓掌]" data-desc="鼓掌！撒花！啪啪啪~啪啪啪~" data-num="145" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/1.gif" title="鼓掌"></div>
                                         <p class="emoji-name">鼓掌</p>
-                                        <!-- <p class="emoji-num">145人</p> -->
+                                        <p class="emoji-num">145人</p>
                                     </li>
                                     <li class="emoji-item" data-eid="39" data-ubb="[草泥马]" data-desc="我心中有一万匹草泥马呼啸而过！" data-num="123" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/8.gif" title="草泥马"></div>
                                         <p class="emoji-name">草泥马</p>
-                                        <!-- <p class="emoji-num">123人</p> -->
+                                        <p class="emoji-num">123人</p>
                                     </li>
                                     <li class="emoji-item" data-eid="42" data-ubb="[赞]" data-desc="赞一个！" data-num="152" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/13.gif" title="赞"></div>
                                         <p class="emoji-name">赞</p>
-                                        <!-- <p class="emoji-num">153人</p> -->
+                                        <p class="emoji-num">153人</p>
                                     </li>
                                     <li class="emoji-item" data-eid="43" data-ubb="[鄙视]" data-desc="战斗力只有5的渣渣！" data-num="100" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/9.gif" title="鄙视"></div>
                                         <p class="emoji-name">鄙视</p>
-                                        <!-- <p class="emoji-num">101人</p> -->
+                                        <p class="emoji-num">101人</p>
                                     </li>
                                     <li class="emoji-item" data-eid="29" data-ubb="[打酱油]" data-desc="打酱油，路过……" data-num="78" style="width: 168px; height: 121px;">
                                         <div><img src="https://pic.kuaizhan.com/face2013/11.gif" title="打酱油"></div>
                                         <p class="emoji-name">打酱油</p>
-                                        <!-- <p class="emoji-num">79人</p> -->
+                                        <p class="emoji-num">79人</p>
                                     </li>
                                 </ul>
                             </div>
@@ -178,71 +174,16 @@
         </div>
     </div>
 </body>
-<<<<<<< Updated upstream
-=======
-<style>
-    .jiayi{
-        font-size: 20px;
-        position: absolute;
-        color: red;
-    }
-</style>
->>>>>>> Stashed changes
 <footer></footer>
 <script src="./js/tianchong.js"></script>
 <script src="./js/index.js"></script>
 <script src="./js/mobile.js"></script>
-<<<<<<< Updated upstream
-=======
-<script src="./js/weixin.js"></script>
-
->>>>>>> Stashed changes
 <script>
-    // 点击+1
     let emoji_item = document.querySelectorAll(".emoji-item")
-    let wrapper = document.querySelector(".cy-wrapper")
-    let emoji_number = [
-        {emoji :1},
-        {emoji :1},
-        {emoji :1},
-        {emoji :1},
-        {emoji :1},
-    ]
     for(let i = 0;i < emoji_item.length;i++){
-        let p = document.createElement("p")
-        p.classList.add("emoji-num")
-        emoji_item[i].appendChild(p)
-        
-        
         emoji_item[i].addEventListener("click",(e)=>{
-<<<<<<< Updated upstream
             console.log(e.target);
         })
     }
-=======
-            let div = document.createElement("div")
-            div.classList.add("jiayi")
-            div.style.left = emoji_item[i].offsetLeft + (emoji_item[i].clientWidth/2) + "px"
-            div.style.top = emoji_item[i].offsetTop - 10 + "px"
-            div.style.animationName = "danhua"
-            div.style.animationDuration = "2s"
-            div.innerHTML = "+1"
-            wrapper.appendChild(div)
-            emoji_number[i].emoji += 1
-            emoji_num[i].innerHTML = `${emoji_number[i].emoji}人`
-            setTimeout(()=>{
-                wrapper.removeChild(div)
-            },2000)
-
-        })
-    }
-    let emoji_num = document.querySelectorAll(".emoji-num")
-    emoji_num[0].innerHTML = `${emoji_number[0].emoji}人`
-    emoji_num[1].innerHTML = `${emoji_number[1].emoji}人`
-    emoji_num[2].innerHTML = `${emoji_number[2].emoji}人`
-    emoji_num[3].innerHTML = `${emoji_number[3].emoji}人`
-    emoji_num[4].innerHTML = `${emoji_number[4].emoji}人`
-    
->>>>>>> Stashed changes
 </script>
 </html>
