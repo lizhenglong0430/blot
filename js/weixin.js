@@ -24,9 +24,9 @@ cyReward.addEventListener("click",()=>{
     share_weixin.style.width = 240 + "px"
     share_weixin.style.height = 325 + "px"
     if(body.clientWidth > 1023){
-        share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight + "px"
+        share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight - 400 + "px"
     }else{
-        share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight  + "px"
+        share_weixin.style.top = (side_fx.offsetTop + mysection.clientHeight - 400)  + "px"
     }
     share_weixin.style.left = "50%"
     share_weixin.style.transform = "translateX(-50%)"
