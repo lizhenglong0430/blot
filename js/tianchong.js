@@ -34,7 +34,7 @@ document.querySelector(".blot_header").innerHTML = `
                             </div>
                         </li>
                         <li><a href="./guidang.html">归档</a></li>
-                        <li><a href="./music.html">音乐</a></li>
+                        <li><a href="https://music.coor.top/">音乐</a></li>
                     </ul>
                 </div>
                 <div class="mob-menu">

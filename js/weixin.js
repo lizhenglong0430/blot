@@ -19,11 +19,12 @@ document.querySelector(".weixin_close").addEventListener("click",()=>{
     document.querySelector("#share_weixin").style.display = "none"
 })
 cyReward.addEventListener("click",()=>{
+    console.log("nihao");
     share_weixin.style.display = "block"
     share_weixin.style.width = 240 + "px"
     share_weixin.style.height = 325 + "px"
     if(body.clientWidth > 1023){
-        share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight - 400 + "px"
+        share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight + "px"
     }else{
         share_weixin.style.top = side_fx.offsetTop + mysection.clientHeight  + "px"
     }
