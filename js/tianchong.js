@@ -51,14 +51,15 @@ document.querySelector(".blot_header").innerHTML = `
                                 <li>
                                     <a href="./bigdata.html">大数据</a>
                                 </li>
+                                <li>
+                                    <a href="./message.html">留言</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <a href="./guidang.html">归档</a>
                         </li>
-                        <li>
-                            <a href="./message.html">留言</a>
-                        </li>
+                        <li><a href="https://music.coor.top/">音乐</a></li>
                     </ul>
                 </div>
             </div>
